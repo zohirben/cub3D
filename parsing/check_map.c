@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:31:08 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 19:25:59 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:01:54 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	check_last_zero(char **strs, int i)
 	j = 0;
 	while (strs[i][j])
 	{
-		if (strs[i][j] == '0')
+		if (strs[i][j] != '1' && strs[i][j] != '\n' && strs[i][j] != ' ' )
 		{
-			printf("Error check the zero\n");
+			printf("Error check the zero or the player\n");
 			exit(2);
 		}
 		j++;

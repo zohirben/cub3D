@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbenaiss <zbenaissa@1337.ma>               +#+  +:+       +#+        */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 09:00:30 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 19:54:16 by zbenaiss         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:09:52 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 void	ft_hook(void *param)
 {
@@ -32,19 +30,24 @@ void	ft_hook(void *param)
 	draw_rays(data);
 }
 
-void draw_player(t_data *data)
+void	draw_player(t_data *data)
 {
-    int radius = 2;
-    int i, j;
+	float	radian;
+	int		radius;
+	int		i;
+	int		j;
+	int		angle;
 
-    for (int angle = 0; angle <= 360; angle += 10)
-    {
-        float radian = angle * (M_PI / 180.0);
-        i = data->player->x_map + radius * cos(radian);
-        j = data->player->y_map + radius * sin(radian);
-        
-        mlx_put_pixel(data->imgmap, i, j, get_rgba(187, 230, 228, 255));
-    }
+	radius = 2;
+	angle = 0;
+	while (angle <= 360)
+	{
+		radian = angle * (M_PI / 180.0);
+		i = data->player->x_map + radius * cos(radian);
+		j = data->player->y_map + radius * sin(radian);
+		mlx_put_pixel(data->imgmap, i, j, get_rgba(187, 230, 228, 255));
+		angle += 10;
+	}
 }
 
 void	get_angle(char c, t_playerme *player)
@@ -96,11 +99,19 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		i = ft_count_map(av[1]);
+		if (i == 0)
+		{
+			printf("check if the file is empty\n");
+			exit(2);
+		}
 		strs = fill_strs(i, av[1]);
 		i = check_textures(strs, &t, &data);
 		ft_start(i, strs, &win);
 		ft_mlx_begin(&t, &data, &win);
 	}
 	else
+	{
+		printf("check arguments\n");
 		return (1);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:13:32 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 18:43:04 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:20:09 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	condition_setter(t_data *data, t_floats f, float x_img)
 	return (0);
 }
 
-unsigned char	*copy_pixels_text(t_data *data, t_floats f, float x_img)
+unsigned char	*copy_pixels_text(t_data *data, t_floats f)
 {
 	return (&data->txt->pixels[(((int)f.y_txt * data->txt->width)
 				+ (int)f.x_txt) * data->txt->bytes_per_pixel]);
@@ -49,7 +49,7 @@ void	ft_draw_textures(t_data *data, float x_img, float y_start, float y_end)
 	{
 		if (condition_setter(data, f, x_img))
 		{
-			text = copy_pixels_text(data, f, x_img);
+			text = copy_pixels_text(data, f);
 			image = copy_pixels_image(data, f, x_img);
 			ft_memmove(image, text, data->txt->bytes_per_pixel);
 		}

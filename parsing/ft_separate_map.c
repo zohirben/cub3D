@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:50:11 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 19:26:34 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:20:39 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**fill_mapo(char **strs, int i, t_window *win)
 	j = 0;
 	while (strs[i])
 	{
-		if (ft_strlen(strs[i]) > win->map.lenght)
+		if ((int)ft_strlen(strs[i]) > win->map.lenght)
 			win->map.lenght = ft_strlen(strs[i]);
 		win->map.mapo[j] = ft_strdup(strs[i]);
 		free(strs[i]);
@@ -43,8 +43,8 @@ void	check_map_len(char	**strs, int len, int i, t_window *win)
 	j = 0;
 	while (strs[j])
 		j++;
-	len = j - i + 1;
-	if (len > i)
+	len = j;
+	if (len >= i)
 		win->map.mapo = (char **)ft_calloc(len + 1, sizeof(char *));
 	else
 	{
@@ -55,15 +55,14 @@ void	check_map_len(char	**strs, int len, int i, t_window *win)
 
 void	ft_start(int i, char **strs, t_window *win)
 {
-	t_player	player;
 	int			j;
-	char		*dtr;
 	int			dtrsize;
 	int			len;
 
 	dtrsize = 0;
 	win->map.wide = 0;
 	win->map.lenght = 0;
+	len = 0;
 	check_map_len(strs, len, i, win);
 	while (strs[i + 1] && strs[i + 1][0] == '\n')
 		i++;

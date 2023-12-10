@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbenaiss <zbenaissa@1337.ma>               +#+  +:+       +#+        */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:48:07 by zbenaiss          #+#    #+#             */
-/*   Updated: 2023/12/04 19:47:04 by zbenaiss         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:18:55 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_rgba(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-t_player	*assign_player(int x, int y, int color)
+t_player	*assign_player(int x, int y)
 {
 	t_player	*player;
 
@@ -43,7 +43,7 @@ void	find_player(t_data *data)
 			if (data->map[i][j] == 'N' || data->map[i][j] == 'E'
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'S')
 			{
-				data->player = assign_player(j, i, get_rgba(20, 100, 93, 255));
+				data->player = assign_player(j, i);
 				break ;
 			}
 			j++;
@@ -71,6 +71,7 @@ void	key_movements2(t_data *data, float delta_distance)
 			* delta_distance;
 	}
 }
+
 void	key_movements(t_data *data, float delta_distance)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))

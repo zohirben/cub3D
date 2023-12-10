@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:49:59 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 18:42:56 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:00:21 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	vertical_data(float *x_txt, t_data *data)
 {
 	float	ratio;
 
-	if (fmod(data->x_ray, 16) == 0)
+	if (fmod(data->x_ray, TILE_SIZE) == 0)
 	{
 		data->txt = data->txt1;
-		ratio = data->txt->height / 16;
-		*(x_txt) = fmod(data->y_ray, 16) * ratio;
+		ratio = data->txt->height / TILE_SIZE;
+		*(x_txt) = fmod(data->y_ray, TILE_SIZE) * ratio;
 	}
 	else
 	{
 		data->txt = data->txt2;
-		ratio = data->txt->height / 16;
-		*(x_txt) = fmod(data->y_ray, 16) * ratio;
+		ratio = data->txt->height / TILE_SIZE;
+		*(x_txt) = fmod(data->y_ray, TILE_SIZE) * ratio;
 	}
 }
 
@@ -34,17 +34,17 @@ void	hor_data(float *x_txt, t_data *data)
 {
 	float	ratio;
 
-	if (fmod(data->y_ray, 16) == 0)
+	if (fmod(data->y_ray, TILE_SIZE) == 0)
 	{
 		data->txt = data->txt3;
-		ratio = data->txt->height / 16;
-		*(x_txt) = fmod(data->x_ray, 16) * ratio;
+		ratio = data->txt->height / TILE_SIZE;
+		*(x_txt) = fmod(data->x_ray, TILE_SIZE) * ratio;
 	}
 	else
 	{
 		data->txt = data->txt4;
-		ratio = data->txt->height / 16;
-		*(x_txt) = fmod(data->x_ray, 16) * ratio;
+		ratio = data->txt->height / TILE_SIZE;
+		*(x_txt) = fmod(data->x_ray, TILE_SIZE) * ratio;
 	}
 }
 

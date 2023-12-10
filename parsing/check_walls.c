@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:41:50 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/11/28 21:25:45 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/08 00:14:19 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_first_line(char *str)
 		{
 			if (str[i] && !(str[i] == '1' || str[i] == '\n' || str[i] == ' '))
 			{
-				printf("Error\n");
+				printf("Error check Wall\n");
 				exit(0);
 			}
 			i++;
@@ -65,7 +65,7 @@ void	check_right_wall(char	**strs)
 	int	i;
 
 	i = 1;
-	while (strs[i][0] && strs[i][0] != '1')
+	while (strs[i][0] && strs[i][0] != '1' && strs[i][0] != ' ')
 	{
 		if (strs[i][0] != '\n')
 		{
@@ -85,8 +85,15 @@ void	check_new_line(char	**strs)
 	{
 		if (strs[i][0] == '\n')
 		{
-			printf("Error a new line in the map\n");
-			exit(2);
+			while (strs[i] && strs[i][0])
+			{
+				if (strs[i][0] != '\0' && strs[i][0] != '\n')
+				{
+					printf("Error a new line in the map\n");
+					exit(2);
+				}
+				i++;
+			}
 		}
 		i++;
 	}

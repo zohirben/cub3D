@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:42:46 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 16:50:47 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:44:58 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,20 @@ char	*ft_textures(char *str, int i)
 	while (str[i] && str[i] != '.' && str[i + 1] != '/')
 		i++;
 	returned = malloc(ft_strlen(str) - i + 1);
-	while (str[i] && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+	while (str[i] && str[i] != '\n' && str[i] != '\t')
 	{
-		returned[j] = str[i];
-		i++;
-		j++;
+		if (str[i] == ' ')
+		{
+			while (str[i++])
+			{
+				if (str[i] != ' ' && str[i] != '\n')
+				{
+					printf("check textures\n");
+					exit(2);
+				}
+			}
+		}
+		returned[j++] = str[i++];
 	}
 	returned[j] = '\0';
 	return (returned);
@@ -62,25 +71,27 @@ char	*ft_textures(char *str, int i)
 
 int	textures_checker(char **strs, t_var *v, t_textures *t, t_data *data)
 {
-	v->count = 0;
 	while (strs[v->i])
 	{
-		v->j = 0;
-		while (strs[v->i][v->j])
+		v->j = -1;
+		while (strs[v->i][++v->j])
 		{
-			if (strs[v->i][v->j] == 'N' && strs[v->i][v->j + 1] == 'O')
+			if (strs[v->i][v->j] == 'N' && strs[v->i][v->j + 1] == 'O'
+				&& strs[v->i][v->j + 2] == ' ')
 				v->count += check_no(strs, v, t);
-			else if (strs[v->i][v->j] == 'S' && strs[v->i][v->j + 1] == 'O')
+			else if (strs[v->i][v->j] == 'S' && strs[v->i][v->j + 1] == 'O'
+					&& strs[v->i][v->j + 2] == ' ')
 				v->count += check_so(strs, v, t);
-			else if (strs[v->i][v->j] == 'E' && strs[v->i][v->j + 1] == 'A')
+			else if (strs[v->i][v->j] == 'E' && strs[v->i][v->j + 1] == 'A'
+					&& strs[v->i][v->j + 2] == ' ')
 				v->count += check_ea(strs, v, t);
-			else if (strs[v->i][v->j] == 'W' && strs[v->i][v->j + 1] == 'E')
+			else if (strs[v->i][v->j] == 'W' && strs[v->i][v->j + 1] == 'E'
+					&& strs[v->i][v->j + 2] == ' ')
 				v->count += check_we(strs, v, t);
-			else if (strs[v->i][v->j] == 'F')
+			else if (strs[v->i][v->j] == 'F' && strs[v->i][v->j + 1] == ' ')
 				v->count += rgb_f(strs, data, t, v);
-			else if (strs[v->i][v->j] == 'C')
+			else if (strs[v->i][v->j] == 'C' && strs[v->i][v->j + 1] == ' ')
 				v->count += rgb_c(strs, data, t, v);
-			v->j++;
 		}
 		v->i++;
 	}
@@ -95,6 +106,16 @@ int	ft_count_map(char *map)
 
 	i = 0;
 	fd = open(map, O_RDWR);
+	if (ft_strncmp(&map[ft_strlen(map) - 4], ".cub", 4) != 0)
+	{
+		printf("check the extension\n");
+		exit(2);
+	}
+	if (fd == -1)
+	{
+		printf("check the file\n");
+		exit(2);
+	}
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -103,7 +124,6 @@ int	ft_count_map(char *map)
 			break ;
 		i++;
 	}
-	close(fd);
 	return (i);
 }
 
@@ -123,5 +143,6 @@ char	**fill_strs(int len, char *str)
 			break ;
 		i++;
 	}
+	check_external(strs, i);
 	return (strs);
 }

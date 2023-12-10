@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 23:48:41 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 16:51:08 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:15:08 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_rgb_one(char *str, int i, t_data *data)
 
 	buffer = malloc(4);
 	j = 0;
-	while (!ft_isalnum(str[i]))
+	while (str[i] && !ft_isalnum(str[i]))
 		i++;
 	if (ft_isalnum(str[i]))
 		while (str[i] && ft_isalnum(str[i]))
@@ -31,12 +31,12 @@ int	ft_rgb_one(char *str, int i, t_data *data)
 		exit(2);
 	}
 	data->floor.r = ft_atoi(buffer);
-	free(buffer);
-	if (data->floor.r > 255 || data->floor.r < 0)
+	if ((data->floor.r > 255 || data->floor.r < 0) || ft_strlen(buffer) > 3)
 	{
 		printf("error check the number in the rgb\n");
 		exit(2);
 	}
+	free(buffer);
 	return (i);
 }
 
@@ -47,7 +47,7 @@ int	ft_rgb_two(char *str, int i, t_data *data)
 
 	buffer = malloc(4);
 	j = 0;
-	while (!ft_isalnum(str[i]))
+	while (str[i] && !ft_isalnum(str[i]))
 		i++;
 	if (ft_isalnum(str[i]))
 		while (str[i] && ft_isalnum(str[i]))
@@ -59,12 +59,12 @@ int	ft_rgb_two(char *str, int i, t_data *data)
 		exit(2);
 	}
 	data->floor.g = ft_atoi(buffer);
-	free(buffer);
-	if (data->floor.g > 255 || data->floor.g < 0)
+	if ((data->floor.g > 255 || data->floor.g < 0) || ft_strlen(buffer) > 3)
 	{
 		printf("error check the number in the rgb\n");
 		exit(2);
 	}
+	free(buffer);
 	return (i);
 }
 
@@ -75,7 +75,7 @@ int	ft_rgb_three(char *str, int i, t_data *data)
 
 	buffer = malloc(4);
 	j = 0;
-	while (!ft_isalnum(str[i]))
+	while (str[i] && !ft_isalnum(str[i]))
 		i++;
 	if (ft_isalnum(str[i]))
 		while (str[i] && ft_isalnum(str[i]))
@@ -87,12 +87,12 @@ int	ft_rgb_three(char *str, int i, t_data *data)
 		exit(2);
 	}
 	data->floor.b = ft_atoi(buffer);
-	free(buffer);
-	if (data->floor.b > 255 || data->floor.b < 0)
+	if ((data->floor.b > 255 || data->floor.b < 0) || ft_strlen(buffer) > 3)
 	{
 		printf("error check the number in the rgb\n");
 		exit(2);
 	}
+	free(buffer);
 	return (i);
 }
 
@@ -100,7 +100,6 @@ void	ft_rgb(char *str, t_data *data)
 {
 	int		i;
 	int		j;
-	char	*buffer;
 
 	i = -1;
 	while (str[++i])

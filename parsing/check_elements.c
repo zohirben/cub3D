@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zbenaiss <zbenaissa@1337.ma>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:54:39 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/11/28 21:15:59 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/04 21:40:36 by zbenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	check_elements(char **strs)
 	}
 	if (count > 0)
 	{
-		printf("error\n");
+		printf("Error check map elements\n");
 		exit(0);
 	}
 }

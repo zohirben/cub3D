@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbenaiss <zbenaissa@1337.ma>               +#+  +:+       +#+        */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:40:40 by zbenaiss          #+#    #+#             */
-/*   Updated: 2023/12/02 16:56:04 by zbenaiss         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:19:32 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	calculate_vertical(t_data *data, float ray_angle)
 	data->y_ray = data->player->y_map;
 	if (ray_angle == 90 || ray_angle == 270)
 		return ;
-	if (ray_angle > 90 && ray_angle < 270)
+	if (ray_angle > 90 && ray_angle < 270) 
 	{
-		data->x_ray = (((int)data->player->x_map / TILE_SIZE) - 0.00001)
-			* TILE_SIZE;
+		data->x_ray = (((int)data->player->x_map / TILE_SIZE))
+			* TILE_SIZE - 0.002;
 		data->x_step = -TILE_SIZE;
 	}
 	else
@@ -58,7 +58,7 @@ void	calculate_vertical(t_data *data, float ray_angle)
 	check_walls(data, 0);
 }
 
-void	cast_rays(t_data *data, float player_x, float player_y, float ray_angle)
+void	cast_rays(t_data *data, float ray_angle)
 {
 	float	hori_distance;
 	float	vert_distance;
@@ -90,7 +90,7 @@ void	draw_rays(t_data *data)
 	while (i < num_rays)
 	{
 		ray_angle = normalize_angle(ray_angle);
-		cast_rays(data, data->player->x_map, data->player->y_map, ray_angle);
+		cast_rays(data, ray_angle);
 		data->ray_distance = data->ray_distance * cos((ray_angle
 					- data->player->direction) * (M_PI / 180.0));
 		draw_walls(data, i);
@@ -113,7 +113,7 @@ void	draw_rays_color(t_data *data)
 	while (i < num_rays)
 	{
 		ray_angle = normalize_angle(ray_angle);
-		cast_rays(data, data->player->x_map, data->player->y_map, ray_angle);
+		cast_rays(data, ray_angle);
 		ray_angle += fov_angle / WIDTH;
 		i++;
 	}

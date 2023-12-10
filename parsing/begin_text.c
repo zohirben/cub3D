@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:00:31 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/12/04 19:01:06 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:44:39 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 int	check_textures(char **strs, t_textures *t, t_data *data)
 {
 	t_var	vars;
-	int		count;
 	int		signal;
 
 	vars.i = 0;
 	vars.j = 0;
 	vars.last_line = 0;
 	signal = 0;
-	count = 0;
-	count = textures_checker(strs, &vars, t, data);
-	if (count != 6)
+	vars.count = 0;
+	vars.count = textures_checker(strs, &vars, t, data);
+	if (vars.count != 6)
 	{
 		printf("error check the textures or the rgb\n");
 		exit(2);

@@ -1,17 +1,17 @@
 SRC_MAIN = main.c drawing/check.c drawing/dda.c drawing/draw.c drawing/render.c \
 	parsing/check_map.c parsing/check_textures.c parsing/check_rgb.c parsing/ft_rgb_insert.c parsing/ft_rgb_c_insert.c \
 	textures/draw_textures.c textures/textures_move.c parsing/check_walls.c parsing/check_elements.c  parsing/begin_text.c\
-	parsing/ft_separate_map.c parsing/fill.c \
+	parsing/ft_separate_map.c parsing/fill.c parsing/check_external.c\
 
 SRC_BONUS = main_bonus.c drawing/check.c drawing/dda.c drawing/draw.c drawing/render.c \
 	parsing/check_map.c parsing/check_textures.c parsing/check_rgb.c parsing/ft_rgb_insert.c parsing/ft_rgb_c_insert.c \
 	textures/draw_textures.c textures/textures_move.c parsing/check_walls.c parsing/check_elements.c parsing/begin_text.c \
-	parsing/ft_separate_map.c parsing/fill.c \
+	parsing/ft_separate_map.c parsing/fill.c parsing/check_external.c\
 
-NAME = cub3d
-NAME_BONUS = cub3d_bonus
+NAME = cub3D
+NAME_BONUS = cub3D_bonus
 CC = cc
-CFLAGS =
+ CFLAGS = -Wall -Wextra -Werror 
 RM = rm -rf
 INCLUDES = -Iinclude ./MLX42/libmlx42.a -lglfw -L"/Users/zbenaiss/goinfre/homebrew/opt/glfw/lib"
 
